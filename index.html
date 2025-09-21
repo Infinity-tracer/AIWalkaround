@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Project Title</title>
+<meta charset="utf-8">
+<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+<style> @-ms-viewport { width: device-width; } </style>
+<link rel="stylesheet" href="vendor/reset.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="multiple-scenes view-control-buttons">
+
+<div id="pano"></div>
+
+<div id="sceneList">
+  <ul class="scenes">
+    
+      <a href="javascript:void(0)" class="scene" data-id="0-cellar_lift">
+        <li class="text">Cellar_lift</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="1-entrance_inside_">
+        <li class="text">Entrance_inside_</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="2-entrance_shot">
+        <li class="text">Entrance_Shot</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="3-exit_low">
+        <li class="text">Exit_low</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="4-front_shot">
+        <li class="text">Front_shot</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="5-long_shot_exit_blue">
+        <li class="text">Long_shot_exit_blue</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="6-opus_blue_rear">
+        <li class="text">Opus_blue_Rear</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="7-opus_blue_side1">
+        <li class="text">opus_blue_side1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="8-villas">
+        <li class="text">Villas</li>
+      </a>
+    
+  </ul>
+</div>
+
+<!-- Voice Control UI -->
+<div style="position:fixed; bottom:20px; right:20px; z-index:9999; display:flex; gap:10px;">
+  <select id="langSelect" onchange="setRecognitionLang(this.value)" style="padding:10px; font-size:14px; border-radius:8px;">
+    <option value="en-IN">English</option>
+    <option value="te-IN">Telugu</option>
+    <option value="hi-IN">Hindi</option>
+    <option value="ta-IN">Tamil</option>
+    <option value="kn-IN">Kannada</option>
+  </select>
+  <button id="micButton" onclick="toggleMic()" style="
+    padding:12px 20px;
+    font-size:16px;
+    border-radius:30px;
+    border:none;
+    background:#1976d2;
+    color:white;
+    box-shadow:0 4px 6px rgba(0,0,0,0.2);
+    cursor:pointer;">
+    🎙️ Start Voice
+  </button>
+</div>
+
+<div id="titleBar">
+  <h1 class="sceneName"></h1>
+</div>
+
+<a href="javascript:void(0)" id="autorotateToggle">
+  <img class="icon off" src="img/play.png">
+  <img class="icon on" src="img/pause.png">
+</a>
+
+<a href="javascript:void(0)" id="fullscreenToggle">
+  <img class="icon off" src="img/fullscreen.png">
+  <img class="icon on" src="img/windowed.png">
+</a>
+
+<a href="javascript:void(0)" id="sceneListToggle">
+  <img class="icon off" src="img/expand.png">
+  <img class="icon on" src="img/collapse.png">
+</a>
+
+<a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1">
+  <img class="icon" src="img/up.png">
+</a>
+<a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2">
+  <img class="icon" src="img/down.png">
+</a>
+<a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3">
+  <img class="icon" src="img/left.png">
+</a>
+<a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4">
+  <img class="icon" src="img/right.png">
+</a>
+<a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5">
+  <img class="icon" src="img/plus.png">
+</a>
+<a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6">
+  <img class="icon" src="img/minus.png">
+</a>
+
+<!-- Avatar container (overlay) -->
+<div id="avatarContainer"
+      style="position:fixed; bottom:20px; left:20px; width:260px; height:360px; z-index:9999; pointer-events:none;">
+  <!-- canvas gets injected here by avatar.js -->
+</div>
+
+<!-- Optional: small CSS to hide avatar on tiny screens -->
+<style>
+  @media (max-width:520px){
+    #avatarContainer { display:none !important; } /* hide avatar on small mobiles for perf */
+  }
+</style>
+
+<!-- Three.js + FBX loader (required) -->
+<script src="vendor/three.min.js"></script>
+<script src="vendor/FBXLoader.js"></script>
+
+<!-- Avatar logic (new) - must load before voice.js so functions exist -->
+<script src="avatar.js"></script>
+
+<!-- Voice navigator (updated) -->
+<script src="voice.js"></script>
+
+<script src="vendor/screenfull.min.js" ></script>
+<script src="vendor/bowser.min.js" ></script>
+<script src="vendor/marzipano.js" ></script>
+
+<script src="data.js"></script>
+<script src="index.js"></script>
+<script src="voice.js"></script>
+
+</body>
+</html>
